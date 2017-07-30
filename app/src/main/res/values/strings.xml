@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Just Cook</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="calc">Конвертер</string>
+    <string name="additional">Додатково</string>
+    <string name="category">Категорії</string>
+    <string name="all_recipes">Всі рецепти</string>
+    <string name="favorite">Улюблені рецепти</string>
+    <string name="toManyIngredients">Ви не можете додати більше 15 інгредієнтів</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_recipe">Add Recipe</string>
+    <string name="title">Створіть свій чудовий рецепт</string>
+    <string name="title_activity_food_calculator">Food Calculator</string>
+    <string name="converter_info">Просто введіть потрібні данні, щоб дізнатися кількість продукту в іншій величині.</string>
+    <string name="title_activity_detailed_recipe">DetailedRecipeActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>

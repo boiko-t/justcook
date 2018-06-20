@@ -1,12 +1,14 @@
-package com.example.taya.justcook;
+package com.example.taya.justcook.dal;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
+import com.example.taya.justcook.domain.entity.Category;
+import com.example.taya.justcook.domain.entity.Ingredient;
+import com.example.taya.justcook.domain.entity.Recipe;
 
 import java.util.ArrayList;
 
@@ -87,7 +89,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getDataByCategory(int category, SQLiteDatabase db){
-        if(category==Category.ALL.ordinal())
+        if(category== Category.ALL.ordinal())
             return db.rawQuery("SELECT "+ ID+", "+ RECIPE_NAME+" FROM "+TABLE_RECIPES, null);
         if(category==Category.FAVOURITE.ordinal())
             return  db.rawQuery("SELECT "+ ID+", "+ RECIPE_NAME+" FROM "+

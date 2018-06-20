@@ -1,21 +1,15 @@
-package com.example.taya.justcook;
+package com.example.taya.justcook.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,15 +21,18 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.taya.justcook.dimension.Dimension;
+import com.example.taya.justcook.domain.entity.Category;
+import com.example.taya.justcook.dal.DBHelper;
+import com.example.taya.justcook.domain.entity.Ingredient;
+import com.example.taya.justcook.R;
+import com.example.taya.justcook.domain.entity.Recipe;
+import com.example.taya.justcook.domain.entity.dimension.Dimension;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 
-public class AddRecipe extends AppCompatActivity implements View.OnClickListener {
+public class AddRecipeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton buttonIngredient, buttonPhoto;
     private LinearLayout placeForIngredients;
@@ -43,7 +40,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
     private EditText recipeName, recipeDescription, recipeCooking;
     private int cookingCounter=1;
     private final int maxIngredientsCount=15;
-    private String categories[]=Category.getCategoryNames(), imagePath;
+    private String categories[]= Category.getCategoryNames(), imagePath;
     private String dimensionNames[]= Dimension.getDimensionNames(true);
     private Recipe recipe;
     private static final int GALLERY_REQUEST=0;
@@ -194,7 +191,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
         {
             if(placeForIngredients.getChildCount()==maxIngredientsCount)
             {
-                Toast.makeText(AddRecipe.this, R.string.toManyIngredients, Toast.LENGTH_LONG).show();
+                Toast.makeText(AddRecipeActivity.this, R.string.toManyIngredients, Toast.LENGTH_LONG).show();
                 return;
             }
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);

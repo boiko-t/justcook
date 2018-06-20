@@ -1,4 +1,4 @@
-package com.example.taya.justcook;
+package com.example.taya.justcook.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.taya.justcook.fragments.ListFragment;
+import com.example.taya.justcook.domain.entity.Category;
+import com.example.taya.justcook.R;
+import com.example.taya.justcook.ui.fragments.ListFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(MainActivity.this, AddRecipe.class);
+                Intent in = new Intent(MainActivity.this, AddRecipeActivity.class);
                 startActivityForResult(in, 1);
             }
         });

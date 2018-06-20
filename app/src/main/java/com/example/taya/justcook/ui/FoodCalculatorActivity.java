@@ -1,4 +1,4 @@
-package com.example.taya.justcook;
+package com.example.taya.justcook.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,15 +12,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.taya.justcook.dimension.Dimension;
-import com.example.taya.justcook.dimension.Glass;
-import com.example.taya.justcook.dimension.Gram;
-import com.example.taya.justcook.dimension.Kilogram;
-import com.example.taya.justcook.dimension.Litre;
-import com.example.taya.justcook.dimension.Mililitre;
-import com.example.taya.justcook.dimension.Piece;
-import com.example.taya.justcook.dimension.TableSpoon;
-import com.example.taya.justcook.dimension.TeaSpoon;
+import com.example.taya.justcook.domain.entity.Ingredient;
+import com.example.taya.justcook.R;
+import com.example.taya.justcook.domain.entity.dimension.Dimension;
+import com.example.taya.justcook.domain.entity.dimension.Glass;
+import com.example.taya.justcook.domain.entity.dimension.Gram;
+import com.example.taya.justcook.domain.entity.dimension.Kilogram;
+import com.example.taya.justcook.domain.entity.dimension.Litre;
+import com.example.taya.justcook.domain.entity.dimension.Mililitre;
+import com.example.taya.justcook.domain.entity.dimension.TableSpoon;
+import com.example.taya.justcook.domain.entity.dimension.TeaSpoon;
 
 
 public class FoodCalculatorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

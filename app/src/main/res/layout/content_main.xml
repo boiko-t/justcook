@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.taya.justcook.MainActivity"
+    tools:context="com.example.taya.justcook.ui.MainActivity"
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical"
     android:id="@+id/container"

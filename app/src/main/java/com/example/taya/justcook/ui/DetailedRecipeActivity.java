@@ -1,17 +1,10 @@
-package com.example.taya.justcook;
+package com.example.taya.justcook.ui;
 
-import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -21,7 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
+import com.example.taya.justcook.dal.DBHelper;
+import com.example.taya.justcook.R;
+import com.example.taya.justcook.domain.entity.Recipe;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 

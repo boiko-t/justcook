@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.taya.justcook.AddRecipe">
+    tools:context="com.example.taya.justcook.ui.AddRecipeActivity">
     <item
         android:id="@+id/action_confirms"
         android:orderInCategory="100"

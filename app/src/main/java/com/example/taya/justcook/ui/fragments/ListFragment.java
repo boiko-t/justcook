@@ -1,11 +1,8 @@
-package com.example.taya.justcook.fragments;
+package com.example.taya.justcook.ui.fragments;
 
-import android.app.LoaderManager;
 import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -14,12 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.taya.justcook.Category;
-import com.example.taya.justcook.DBHelper;
-import com.example.taya.justcook.DetailedRecipeActivity;
-import com.example.taya.justcook.MainActivity;
+import com.example.taya.justcook.domain.entity.Category;
+import com.example.taya.justcook.dal.DBHelper;
+import com.example.taya.justcook.ui.DetailedRecipeActivity;
 import com.example.taya.justcook.R;
 
 public class ListFragment extends android.support.v4.app.Fragment {

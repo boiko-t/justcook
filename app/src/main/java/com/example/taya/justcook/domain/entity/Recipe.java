@@ -1,4 +1,4 @@
-package com.example.taya.justcook;
+package com.example.taya.justcook.domain.entity;
 
 import java.util.ArrayList;
 

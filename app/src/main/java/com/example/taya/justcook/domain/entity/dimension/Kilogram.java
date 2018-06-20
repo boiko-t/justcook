@@ -1,4 +1,4 @@
-package com.example.taya.justcook.dimension;
+package com.example.taya.justcook.domain.entity.dimension;
 
 public class Kilogram extends Dimension {
 

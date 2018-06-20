@@ -1,4 +1,4 @@
-package com.example.taya.justcook;
+package com.example.taya.justcook.domain.entity;
 
 public enum Category {
     DESSERT, MAIN_DISH, SOUP, SALAD, ALL, FAVOURITE;

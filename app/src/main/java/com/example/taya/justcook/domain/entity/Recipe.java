@@ -9,7 +9,7 @@ public class Recipe {
     private String[] ingredientText;
     private boolean like;
 
-    public boolean isLike() {
+    public boolean getLike() {
         return like;
     }
 

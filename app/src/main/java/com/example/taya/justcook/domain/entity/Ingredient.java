@@ -19,7 +19,9 @@ public class Ingredient {
     private Dimension dimension;
     private String ingredientName;
 
-    public Ingredient(){}
+    public Ingredient() {
+    }
+
     public Ingredient(String ingredientName, double amount, Dimension dimension) {
         this.dimension = dimension;
         dimension.setValue(amount);
@@ -48,8 +50,8 @@ public class Ingredient {
         this.ingredientName = ingredientName;
     }
 
-    public static Dimension setDimensionType(int p){
-        Dimension d=new Gram();
+    public static Dimension setDimensionType(int p) {
+        Dimension d = new Gram();
         switch (p) {
             case 0:
                 d = new Gram();
@@ -79,14 +81,13 @@ public class Ingredient {
         return d;
     }
 
-    public boolean loadIngredientFromLayout(LinearLayout l)
-    {
+    public boolean loadIngredientFromLayout(LinearLayout l) {
         String sValue = ((EditText) l.getChildAt(1)).getText().toString();
         String sName = ((EditText) l.getChildAt(0)).getText().toString();
-        if(sValue.equals("") || sName.equals(""))
+        if (sValue.equals("") || sName.equals(""))
             return false;
         ingredientName = sName;
-        int position=((Spinner)l.getChildAt(2)).getSelectedItemPosition();
+        int position = ((Spinner) l.getChildAt(2)).getSelectedItemPosition();
         dimension = setDimensionType(position);
         dimension.setValue(Double.parseDouble(sValue));
         return true;

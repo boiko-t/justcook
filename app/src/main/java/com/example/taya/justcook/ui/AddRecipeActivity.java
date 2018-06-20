@@ -38,12 +38,12 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     private LinearLayout placeForIngredients;
     private Spinner categorySpinner;
     private EditText recipeName, recipeDescription, recipeCooking;
-    private int cookingCounter=1;
-    private final int maxIngredientsCount=15;
-    private String categories[]= Category.getCategoryNames(), imagePath;
-    private String dimensionNames[]= Dimension.getDimensionNames(true);
+    private int cookingCounter = 1;
+    private final int maxIngredientsCount = 15;
+    private String categories[] = Category.getCategoryNames(), imagePath;
+    private String dimensionNames[] = Dimension.getDimensionNames(true);
     private Recipe recipe;
-    private static final int GALLERY_REQUEST=0;
+    private static final int GALLERY_REQUEST = 0;
     private TextWatcher watcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -52,21 +52,20 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             int i = s.length();
-            if(i==0) {
-                cookingCounter=1;
-                if(before==1)
-                {
+            if (i == 0) {
+                cookingCounter = 1;
+                if (before == 1) {
                     recipeCooking.append("1. ");
                     cookingCounter++;
                 }
                 return;
             }
-            if(s.charAt(i-1)=='\n' && count==0) {
+            if (s.charAt(i - 1) == '\n' && count == 0) {
                 cookingCounter--;
                 return;
             }
-            if(s.charAt(i-1)=='\n' && count!=0){
-                recipeCooking.append(cookingCounter+". ");
+            if (s.charAt(i - 1) == '\n' && count != 0) {
+                recipeCooking.append(cookingCounter + ". ");
                 cookingCounter++;
             }
         }
@@ -74,12 +73,13 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         @Override
         public void afterTextChanged(Editable s) {
             int i = s.length();
-            if(i==0)
+            if (i == 0)
                 return;
-            if(s.charAt(i-1)=='\n')
-                s.delete(i-1, i);
+            if (s.charAt(i - 1) == '\n')
+                s.delete(i - 1, i);
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,47 +93,46 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 onBackPressed();
             }
         });
-        buttonIngredient = (ImageButton)findViewById(R.id.buttonAddIngredient);
-        buttonPhoto=(ImageButton)findViewById(R.id.buttonAddPhoto);
+        buttonIngredient = (ImageButton) findViewById(R.id.buttonAddIngredient);
+        buttonPhoto = (ImageButton) findViewById(R.id.buttonAddPhoto);
         buttonPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentGallery=new Intent(Intent.ACTION_PICK);
+                Intent intentGallery = new Intent(Intent.ACTION_PICK);
                 intentGallery.setType("image/*");
                 startActivityForResult(intentGallery, GALLERY_REQUEST);
             }
         });
         buttonIngredient.setOnClickListener(this);
-        placeForIngredients = (LinearLayout)findViewById(R.id.placeForIngredients);
-        recipeName = (EditText)findViewById(R.id.recipe_name);
-        recipeDescription = (EditText)findViewById(R.id.recipe_description);
-        recipeCooking = (EditText)findViewById(R.id.edTextCookingDescription);
+        placeForIngredients = (LinearLayout) findViewById(R.id.placeForIngredients);
+        recipeName = (EditText) findViewById(R.id.recipe_name);
+        recipeDescription = (EditText) findViewById(R.id.recipe_description);
+        recipeCooking = (EditText) findViewById(R.id.edTextCookingDescription);
         recipeCooking.addTextChangedListener(watcher);
         recipeCooking.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
-                    if(recipeCooking.getText().toString().equals("")) {
+                if (hasFocus) {
+                    if (recipeCooking.getText().toString().equals("")) {
                         recipeCooking.setText("1. ");
-                        cookingCounter=2;
+                        cookingCounter = 2;
                     }
-                }else{
-                    if(recipeCooking.getText().toString().length()<4)
+                } else {
+                    if (recipeCooking.getText().toString().length() < 4)
                         recipeCooking.setText("");
                 }
 
             }
         });
-        LinearLayout firstIngredient = (LinearLayout)findViewById(R.id.ingredient);
-        setDimensionSpinner((Spinner)firstIngredient.getChildAt(2));
+        LinearLayout firstIngredient = (LinearLayout) findViewById(R.id.ingredient);
+        setDimensionSpinner((Spinner) firstIngredient.getChildAt(2));
         firstIngredient.getChildAt(3).setOnClickListener(this);
-        categorySpinner = (Spinner)findViewById(R.id.spinnerCategory);
+        categorySpinner = (Spinner) findViewById(R.id.spinnerCategory);
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
         categorySpinner.setSelection(0);
-        recipe=new Recipe();
+        recipe = new Recipe();
     }
 
     @Override
@@ -164,10 +163,10 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         Intent intent = new Intent();
-        if(id == R.id.action_confirms) {
+        if (id == R.id.action_confirms) {
             recipe = saveDataToObject();
             recipe.setImagePath(imagePath);
-            DBHelper dbHelper = new DBHelper(this);
+            DBHelper dbHelper = DBHelper.getInstance(this);
             SQLiteDatabase database = dbHelper.getWritableDatabase();
             dbHelper.addRecipe(recipe, database);
             setResult(RESULT_OK, intent);
@@ -177,20 +176,18 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         return super.onOptionsItemSelected(item);
     }
 
-    private void setDimensionSpinner(Spinner v)
-    {
+    private void setDimensionSpinner(Spinner v) {
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dimensionNames);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         v.setAdapter(categoryAdapter);
         v.setSelection(0);
     }
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if(id==R.id.buttonAddIngredient)
-        {
-            if(placeForIngredients.getChildCount()==maxIngredientsCount)
-            {
+        if (id == R.id.buttonAddIngredient) {
+            if (placeForIngredients.getChildCount() == maxIngredientsCount) {
                 Toast.makeText(AddRecipeActivity.this, R.string.toManyIngredients, Toast.LENGTH_LONG).show();
                 return;
             }
@@ -199,29 +196,29 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
             setDimensionSpinner((Spinner) newLay.getChildAt(2));
             newLay.getChildAt(3).setOnClickListener(this);
             placeForIngredients.addView(newLay);
-        }else{
-            if(placeForIngredients.getChildCount()==1)
+        } else {
+            if (placeForIngredients.getChildCount() == 1)
                 return;
             View layout = (View) v.getParent();
             placeForIngredients.removeView(layout);
         }
     }
 
-    private Recipe saveDataToObject(){
+    private Recipe saveDataToObject() {
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
         LinearLayout l;
-        for (int i=0; i<placeForIngredients.getChildCount(); i++) {
+        for (int i = 0; i < placeForIngredients.getChildCount(); i++) {
             Ingredient ing = new Ingredient();
-            l=(LinearLayout)placeForIngredients.getChildAt(i);
-            if(!ing.loadIngredientFromLayout(l))
+            l = (LinearLayout) placeForIngredients.getChildAt(i);
+            if (!ing.loadIngredientFromLayout(l))
                 continue;
             ingredientList.add(ing);
         }
         String name, description, cooking;
-        name=recipeName.getText().toString();
-        description=recipeDescription.getText().toString();
-        cooking=recipeCooking.getText().toString();
-        Category c = Category.values()[categorySpinner.getSelectedItemPosition()];
-        return new Recipe(name, description, cooking, ingredientList, c);
+        name = recipeName.getText().toString();
+        description = recipeDescription.getText().toString();
+        cooking = recipeCooking.getText().toString();
+        Category category = Category.values()[categorySpinner.getSelectedItemPosition()];
+        return new Recipe(name, description, cooking, ingredientList, category);
     }
 }

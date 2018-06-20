@@ -26,6 +26,7 @@ public class ListFragment extends android.support.v4.app.Fragment {
     private DBHelper dbHelper;
     SimpleCursorAdapter scAdapter;
     Cursor cursor;
+
     public void setCategory(int category) {
         this.category = category;
     }
@@ -33,7 +34,7 @@ public class ListFragment extends android.support.v4.app.Fragment {
     private OnFragmentInteractionListener mListener;
 
     public ListFragment() {
-        category= Category.ALL.ordinal();
+        category = Category.ALL.ordinal();
     }
 
 
@@ -47,7 +48,6 @@ public class ListFragment extends android.support.v4.app.Fragment {
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +57,7 @@ public class ListFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v= inflater.inflate(R.layout.fragment_add_recipe, container, false);
+        View v = inflater.inflate(R.layout.fragment_add_recipe, container, false);
         listView = (ListView) v.findViewById(R.id.listView);
         setList();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,8 +79,8 @@ public class ListFragment extends android.support.v4.app.Fragment {
         setList();
     }
 
-    public void setList(){
-        dbHelper=new DBHelper(getContext());
+    public void setList() {
+        dbHelper = DBHelper.getInstance(getContext());
         SQLiteDatabase database = dbHelper.getWritableDatabase();
         cursor = dbHelper.getDataByCategory(category, database);
         scAdapter = new SimpleCursorAdapter(getContext(),
@@ -90,7 +90,6 @@ public class ListFragment extends android.support.v4.app.Fragment {
         listView.setAdapter(scAdapter);
         database.close();
     }
-
 
 
     @Override
